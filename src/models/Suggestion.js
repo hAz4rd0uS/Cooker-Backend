@@ -5,11 +5,11 @@ const { Schema } = mongoose;
 const suggestionSchema = new Schema(
   {
     from: {
-      type: Schema.Types.ObjectId,
+      type: String,
       required: true
     },
     recipe: {
-      type: Schema.Types.ObjectId,
+      type: String,
       required: true
     },
     ingredients: {

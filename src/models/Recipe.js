@@ -5,7 +5,7 @@ const { Schema } = mongoose;
 const recipeSchema = new Schema(
   {
     creator: {
-      type: Schema.Types.ObjectId,
+      type: String,
       required: true
     },
     name: {

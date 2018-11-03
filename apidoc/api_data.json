@@ -30,7 +30,7 @@
       }
     },
     "version": "0.0.0",
-    "filename": "C:/Users/Pierrick/JSProject-Back/node_modules/koa-smart/dist/ApiDocTmp/auth/login.js",
+    "filename": "C:/Users/Pierrick/Cooker-Backend/node_modules/koa-smart/dist/ApiDocTmp/auth/login.js",
     "groupTitle": "Auth",
     "name": "PostAuthLogin"
   },
@@ -60,12 +60,19 @@
             "optional": false,
             "field": "password",
             "description": "<p>It should be a string.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "profileImageUrl",
+            "description": "<p>It should be a string.</p>"
           }
         ]
       }
     },
     "version": "0.0.0",
-    "filename": "C:/Users/Pierrick/JSProject-Back/node_modules/koa-smart/dist/ApiDocTmp/auth/register.js",
+    "filename": "C:/Users/Pierrick/Cooker-Backend/node_modules/koa-smart/dist/ApiDocTmp/auth/register.js",
     "groupTitle": "Auth",
     "name": "PostAuthRegister"
   },
@@ -80,30 +87,45 @@
       }
     ],
     "version": "0.0.0",
-    "filename": "C:/Users/Pierrick/JSProject-Back/node_modules/koa-smart/dist/ApiDocTmp/Index.js",
+    "filename": "C:/Users/Pierrick/Cooker-Backend/node_modules/koa-smart/dist/ApiDocTmp/Index.js",
     "groupTitle": "Index",
     "name": "Get"
   },
   {
     "type": "delete",
-    "url": "/message/:id",
+    "url": "/recipe/:id",
     "title": "",
-    "group": "Message",
+    "group": "Recipe",
     "permission": [
       {
         "name": "public"
       }
     ],
     "version": "0.0.0",
-    "filename": "C:/Users/Pierrick/JSProject-Back/node_modules/koa-smart/dist/ApiDocTmp/message/-id.js",
-    "groupTitle": "Message",
-    "name": "DeleteMessageId"
+    "filename": "C:/Users/Pierrick/Cooker-Backend/node_modules/koa-smart/dist/ApiDocTmp/recipe/-id.js",
+    "groupTitle": "Recipe",
+    "name": "DeleteRecipeId"
+  },
+  {
+    "type": "get",
+    "url": "/recipe/:id/suggestions",
+    "title": "",
+    "group": "Recipe",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "version": "0.0.0",
+    "filename": "C:/Users/Pierrick/Cooker-Backend/node_modules/koa-smart/dist/ApiDocTmp/recipe/-id/suggestions.js",
+    "groupTitle": "Recipe",
+    "name": "GetRecipeIdSuggestions"
   },
   {
     "type": "post",
-    "url": "/message",
+    "url": "/recipe",
     "title": "",
-    "group": "Message",
+    "group": "Recipe",
     "permission": [
       {
         "name": "public"
@@ -116,7 +138,14 @@
             "group": "Parameter",
             "type": "String",
             "optional": false,
-            "field": "from",
+            "field": "creator",
+            "description": "<p>It should be a string.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "name",
             "description": "<p>It should be a string.</p>"
           },
           {
@@ -130,142 +159,87 @@
             "group": "Parameter",
             "type": "String",
             "optional": false,
-            "field": "room",
+            "field": "ingredients",
             "description": "<p>It should be a string.</p>"
           },
           {
             "group": "Parameter",
             "type": "String",
-            "optional": false,
-            "field": "password",
+            "optional": true,
+            "field": "imageUrl",
             "description": "<p>It should be a string.</p>"
           }
         ]
       }
     },
     "version": "0.0.0",
-    "filename": "C:/Users/Pierrick/JSProject-Back/node_modules/koa-smart/dist/ApiDocTmp/message.js",
-    "groupTitle": "Message",
-    "name": "PostMessage"
+    "filename": "C:/Users/Pierrick/Cooker-Backend/node_modules/koa-smart/dist/ApiDocTmp/recipe.js",
+    "groupTitle": "Recipe",
+    "name": "PostRecipe"
+  },
+  {
+    "type": "post",
+    "url": "/recipe/:id/suggestion",
+    "title": "",
+    "group": "Recipe",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "text",
+            "description": "<p>It should be a string.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "ingredients",
+            "description": "<p>It should be a string.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "C:/Users/Pierrick/Cooker-Backend/node_modules/koa-smart/dist/ApiDocTmp/recipe/-id/suggestion.js",
+    "groupTitle": "Recipe",
+    "name": "PostRecipeIdSuggestion"
   },
   {
     "type": "delete",
-    "url": "/room/:id",
+    "url": "/suggestion/:id",
     "title": "",
-    "group": "Room",
+    "group": "Suggestion",
     "permission": [
       {
         "name": "public"
       }
     ],
     "version": "0.0.0",
-    "filename": "C:/Users/Pierrick/JSProject-Back/node_modules/koa-smart/dist/ApiDocTmp/room/-id.js",
-    "groupTitle": "Room",
-    "name": "DeleteRoomId"
+    "filename": "C:/Users/Pierrick/Cooker-Backend/node_modules/koa-smart/dist/ApiDocTmp/suggestion/-id.js",
+    "groupTitle": "Suggestion",
+    "name": "DeleteSuggestionId"
   },
   {
-    "type": "post",
-    "url": "/room",
+    "type": "get",
+    "url": "/suggestion/:id/accept",
     "title": "",
-    "group": "Room",
+    "group": "Suggestion",
     "permission": [
       {
         "name": "public"
       }
     ],
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "name",
-            "description": "<p>It should be a string.</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "description",
-            "description": "<p>It should be a string.</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "Boolean",
-            "optional": false,
-            "field": "private",
-            "description": "<p>It should be a boolean or one of: (&quot;true&quot;, &quot;false&quot;).</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": true,
-            "field": "password",
-            "description": "<p>It should be a string.</p>"
-          }
-        ]
-      }
-    },
     "version": "0.0.0",
-    "filename": "C:/Users/Pierrick/JSProject-Back/node_modules/koa-smart/dist/ApiDocTmp/room.js",
-    "groupTitle": "Room",
-    "name": "PostRoom"
-  },
-  {
-    "type": "post",
-    "url": "/room/:id/join",
-    "title": "",
-    "group": "Room",
-    "permission": [
-      {
-        "name": "public"
-      }
-    ],
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": false,
-            "field": "password",
-            "description": "<p>It should be a string.</p>"
-          }
-        ]
-      }
-    },
-    "version": "0.0.0",
-    "filename": "C:/Users/Pierrick/JSProject-Back/node_modules/koa-smart/dist/ApiDocTmp/room/-id/join.js",
-    "groupTitle": "Room",
-    "name": "PostRoomIdJoin"
-  },
-  {
-    "type": "post",
-    "url": "/room/:id/messages",
-    "title": "",
-    "group": "Room",
-    "permission": [
-      {
-        "name": "public"
-      }
-    ],
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "String",
-            "optional": true,
-            "field": "password",
-            "description": "<p>It should be a string.</p>"
-          }
-        ]
-      }
-    },
-    "version": "0.0.0",
-    "filename": "C:/Users/Pierrick/JSProject-Back/node_modules/koa-smart/dist/ApiDocTmp/room/-id/messages.js",
-    "groupTitle": "Room",
-    "name": "PostRoomIdMessages"
+    "filename": "C:/Users/Pierrick/Cooker-Backend/node_modules/koa-smart/dist/ApiDocTmp/suggestion/-id/accept.js",
+    "groupTitle": "Suggestion",
+    "name": "GetSuggestionIdAccept"
   }
 ]

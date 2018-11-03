@@ -1,5 +1,5 @@
-import { Types } from "koa-smart";
 import Route from "./Route";
+import { Types } from "koa-smart";
 import Recipe from "../models/Recipe";
 import Suggestion from "../models/Suggestion";
 import authMiddleware from "../middlewares/Auth";
@@ -57,7 +57,7 @@ class RouteRecipe extends Route {
   @Route.Post({
     path: "",
     bodyType: Types.object().keys({
-      creator: Types.number().required(),
+      creator: Types.string().required(),
       name: Types.string().required(),
       text: Types.string().required(),
       ingredients: Types.string().required(),
@@ -90,8 +90,6 @@ class RouteRecipe extends Route {
   @Route.Post({
     path: "/:id/suggestion",
     bodyType: Types.object().keys({
-      from: Types.number().required(),
-      recipe: Types.number().required(),
       text: Types.string().required(),
       ingredients: Types.string().required()
     })
@@ -100,9 +98,9 @@ class RouteRecipe extends Route {
     try {
       const body = this.body(ctx);
       const from = ctx.state.user._id;
-      const result = (await Recipe.create({
-        creator: body.creator,
+      const result = (await Suggestion.create({
         from: from,
+        recipe: ctx.params.id,
         text: body.text,
         ingredients: body.ingredients,
         valid: false
