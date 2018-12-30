@@ -1,5 +1,6 @@
 import Route from "./Route";
 import { Types } from "koa-smart";
+import User from "../models/User";
 import Recipe from "../models/Recipe";
 import Suggestion from "../models/Suggestion";
 import authMiddleware from "../middlewares/Auth";
@@ -26,6 +27,30 @@ class RouteRecipe extends Route {
       return this.send(ctx, 404, err, null);
     }
     this.sendOk(ctx, response, "Successfully read recipes");
+  }
+
+   @Route.Get({
+    path: "/:id"
+  })
+  async listRecipeByUser(ctx) {
+    try {
+      const user = await User.findOne({ _id: ctx.params.id });
+      if (user === null) return this.send(ctx, 404, "User not found", null);
+      const recipes =
+        (await Recipe.find({ creator: ctx.params.id })) || [];
+      let response = {
+        recipes: recipes
+      };
+      return this.sendOk(
+        ctx,
+        response,
+        "Successfully got user's recipes"
+      );
+    } catch (err) {
+      if (typeof err !== "string")
+        return this.send(ctx, 401, "Unknown error ...", null);
+      return this.send(ctx, 401, err, null);
+    }
   }
 
   @Route.Get({

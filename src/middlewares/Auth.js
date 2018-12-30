@@ -8,7 +8,7 @@ const authMiddleware = async (ctx, next) => {
     if (token == null) throw "Token not specified";
     try {
       const decoded = await jwt.verify(token, config.secret);
-      const user = await User.findOne({ username: decoded.username });
+      const user = await User.findOne({ email: decoded.email });
       if (user === null) throw "error";
       ctx.state.user = user;
     } catch (err) {

@@ -16,7 +16,7 @@ define({ "api": [
             "group": "Parameter",
             "type": "String",
             "optional": false,
-            "field": "username",
+            "field": "email",
             "description": "<p>It should be a string.</p>"
           },
           {
@@ -51,7 +51,7 @@ define({ "api": [
             "group": "Parameter",
             "type": "String",
             "optional": false,
-            "field": "username",
+            "field": "email",
             "description": "<p>It should be a string.</p>"
           },
           {
@@ -64,8 +64,22 @@ define({ "api": [
           {
             "group": "Parameter",
             "type": "String",
-            "optional": true,
+            "optional": false,
             "field": "profileImageUrl",
+            "description": "<p>It should be a string.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "firstName",
+            "description": "<p>It should be a string.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "lastName",
             "description": "<p>It should be a string.</p>"
           }
         ]

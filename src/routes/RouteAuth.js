@@ -13,26 +13,26 @@ export default class RouteAuth extends Route {
   @Route.Post({
     path: "/login",
     bodyType: Types.object().keys({
-      username: Types.string().required(),
+      email: Types.string().required(),
       password: Types.string().required()
     })
   })
   async authenticate(ctx) {
     let response = null;
-    const error = "Bad Username or Password";
+    const error = "Bad Email or Password";
     try {
       const body = this.body(ctx);
-      const user = await User.findOne({ username: body.username });
+      const user = await User.findOne({ email: body.email });
       if (user === null) throw error;
       const matched = compareHash(body.password + user.salt, user.password);
       if (!matched) throw error;
-      const token = jwt.sign({ username: user.username }, config.secret, {
+      const token = jwt.sign({ email: user.email }, config.secret, {
         expiresIn: "10d"
       });
       response = {
         user: {
           token,
-          username: user.username,
+          email: user.email,
           id: user._id
         }
       };
@@ -47,23 +47,26 @@ export default class RouteAuth extends Route {
   @Route.Post({
     path: "/register",
     bodyType: Types.object().keys({
-      username: Types.string().required(),
+      email: Types.string().required(),
       password: Types.string().required(),
-      profileImageUrl: Types.string()
+      profileImageUrl: Types.string().required(),
+      firstName: Types.string().required(),
+      lastName: Types.string().required()
     })
   })
   async register(ctx) {
     try {
       const body = this.body(ctx);
-      const user = await User.findOne({ username: body.username });
-      console.log(user);
+      const user = await User.findOne({ email: body.email });
       if (user !== null) throw "Username is already taken!";
       const salt = generateSalt();
       const result = await User.create({
-        username: body.username,
+        email: body.email,
         password: await hashPassword(body.password + salt),
         salt: salt,
-        profileImageUrl: body.profileImageUrl || ""
+        profileImageUrl: body.profileImageUrl,
+        firstName: body.firstName,
+        lastName: body.lastName
       });
       if (result === null)
         return this.send(ctx, 403, "Failed to create the user...");

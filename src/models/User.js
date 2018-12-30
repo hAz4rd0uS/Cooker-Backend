@@ -4,7 +4,15 @@ const { Schema } = mongoose;
 
 const userSchema = new Schema(
   {
-    username: {
+    firstName: {
+      type: String,
+      required: true
+    },
+    lastName: {
+      type: String,
+      required: true
+    },
+    email: {
       type: String,
       required: true,
       unique: true
@@ -19,7 +27,7 @@ const userSchema = new Schema(
     },
     profileImageUrl: {
       type: String,
-      required: false
+      required: true
     }
   },
   { timestamps: true }
