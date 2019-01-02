@@ -136,6 +136,21 @@ define({ "api": [
     "name": "GetRecipeIdSuggestions"
   },
   {
+    "type": "get",
+    "url": "/recipe/seek/:toFind",
+    "title": "",
+    "group": "Recipe",
+    "permission": [
+      {
+        "name": "public"
+      }
+    ],
+    "version": "0.0.0",
+    "filename": "C:/Users/Pierrick/Cooker-Backend/node_modules/koa-smart/dist/ApiDocTmp/recipe/seek/-toFind.js",
+    "groupTitle": "Recipe",
+    "name": "GetRecipeSeekTofind"
+  },
+  {
     "type": "post",
     "url": "/recipe",
     "title": "",

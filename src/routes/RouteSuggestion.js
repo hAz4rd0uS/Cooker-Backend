@@ -21,11 +21,6 @@ class RouteSuggestion extends Route {
       if (suggestion == null) throw "Suggestion not found";
       let recipe = await Recipe.findOne({ _id: suggestion.recipe });
       if (recipe == null) throw error;
-      console.log(JSON.stringify(recipe.creator));
-      console.log(JSON.stringify(ctx.state.user._id));
-      console.log("lol" + ctx.state.user._id.toString() + "lol");
-      console.log("lol" + recipe.creator + "lol");
-      console.log("r5bddb0f00e40692e385e668d" !== recipe.creator);
       if (recipe.creator !== ctx.state.user._id.toString())
         return this.send(ctx, 401, "Unauthorized");
       let result = await Recipe.updateOne(

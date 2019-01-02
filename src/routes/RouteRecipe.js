@@ -29,23 +29,42 @@ class RouteRecipe extends Route {
     this.sendOk(ctx, response, "Successfully read recipes");
   }
 
-   @Route.Get({
+  @Route.Get({
+    path: "/seek/:toFind"
+  })
+  async findLikeRecipe(ctx) {
+    try {
+      const recipes = (await Recipe.find({})) || [];
+      let likeRecipes = [];
+      await recipes.forEach(element => {
+        console.log(element);
+        if (element.name.indexOf(ctx.params.toFind) > -1) {
+          likeRecipes.push(element);
+        }
+      });
+      let response = {
+        recipes: likeRecipes
+      };
+      return this.sendOk(ctx, response, "Successfully got recipes");
+    } catch (err) {
+      if (typeof err !== "string")
+        return this.send(ctx, 401, "Unknown error ...", null);
+      return this.send(ctx, 401, err, null);
+    }
+  }
+
+  @Route.Get({
     path: "/:id"
   })
   async listRecipeByUser(ctx) {
     try {
       const user = await User.findOne({ _id: ctx.params.id });
       if (user === null) return this.send(ctx, 404, "User not found", null);
-      const recipes =
-        (await Recipe.find({ creator: ctx.params.id })) || [];
+      const recipes = (await Recipe.find({ creator: ctx.params.id })) || [];
       let response = {
         recipes: recipes
       };
-      return this.sendOk(
-        ctx,
-        response,
-        "Successfully got user's recipes"
-      );
+      return this.sendOk(ctx, response, "Successfully got user's recipes");
     } catch (err) {
       if (typeof err !== "string")
         return this.send(ctx, 401, "Unknown error ...", null);
